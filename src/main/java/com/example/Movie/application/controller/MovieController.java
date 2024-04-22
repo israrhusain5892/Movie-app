@@ -38,14 +38,14 @@ public class MovieController {
             return res;
     }
 
-     @GetMapping("/download/{id}")
-    public ResponseEntity<Resource> download(@PathVariable int id){
-          MovieDto movie=movieServiceImp.getMovieById(id);
-          return ResponseEntity.ok().
-                  contentType(MediaType.parseMediaType(movie.getFileType())).
-                  header(HttpHeaders.CONTENT_DISPOSITION,"movie; fileName = \"" +movie.getMovie_name()+"\"").
-                  body(new ByteArrayResource(movie.getMovie_photo()));
-     }
+//     @GetMapping("/download/{id}")
+//    public ResponseEntity<Resource> download(@PathVariable int id){
+//          MovieDto movie=movieServiceImp.getMovieById(id);
+//          return ResponseEntity.ok().
+//                  contentType(MediaType.parseMediaType(movie.getFileType())).
+//                  header(HttpHeaders.CONTENT_DISPOSITION,"movie; fileName = \"" +movie.getMovie_name()+"\"").
+//                  body(new ByteArrayResource(movie.getMovie_photo()));
+//     }
 
     @GetMapping("/{categoryId}")
     public List<MovieDto> getAllMovieByCategoryName(@PathVariable Integer categoryId){
