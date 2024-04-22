@@ -11,7 +11,7 @@ import java.util.List;
 public interface Movieservice {
 
 
-     MovieDtoResponse publishMovie(MovieDto movieDto, Integer categoryId, MultipartFile file) throws IOException;
+     MovieDto publishMovie(MovieDto movieDto, Integer categoryId) throws IOException;
 
      MovieDto updateMovie(MovieDto movieDto,Integer movieId,Integer categoryId);
      String deleteMovie(Integer movieId);

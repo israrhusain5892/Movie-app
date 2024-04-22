@@ -27,14 +27,14 @@ public class MovieController {
     private MovieServiceImp movieServiceImp;
 
     @PostMapping("/{catId}")
-    public MovieDtoResponse saveMovie(@RequestBody MovieDto movieDto, @PathVariable Integer catId, @RequestParam("file") MultipartFile file) throws IOException {
-          String downloadUrl="";
-          MovieDtoResponse res= movieServiceImp.publishMovie(movieDto,catId,file);
-        downloadUrl= ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/")
-                .path(res.getId()+"")
-                .toUriString();
-            res.setUrl(downloadUrl);
+    public MovieDto saveMovie(@RequestBody MovieDto movieDto, @PathVariable Integer catId) throws IOException {
+//          String downloadUrl="";
+          MovieDto res= movieServiceImp.publishMovie(movieDto,catId);
+//        downloadUrl= ServletUriComponentsBuilder.fromCurrentContextPath()
+//                .path("/download/")
+//                .path(res.getId()+"")
+//                .toUriString();
+//            res.setUrl(downloadUrl);
             return res;
     }
 

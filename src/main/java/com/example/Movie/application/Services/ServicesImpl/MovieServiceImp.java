@@ -34,22 +34,22 @@ public class MovieServiceImp implements Movieservice {
      @Autowired
     private CategoryRepo categoryRepo;
     @Override
-    public MovieDtoResponse publishMovie(MovieDto movieDto, Integer categoryId, MultipartFile file) throws IOException {
+    public MovieDto publishMovie(MovieDto movieDto, Integer categoryId) throws IOException {
 
-//        String downloadUrl="";
+        String downloadUrl="";
         Category cat=categoryRepo.findById(categoryId).orElseThrow(()->new ResourceAccessException("Resource not found"));
         CategoryDto categoryDto=modelMapper.map(cat,CategoryDto.class);
 
           Movie movie=modelMapper.map(movieDto,Movie.class);
-          movie.setMovie_photo(file.getBytes());
-          String name=file.getOriginalFilename();
-          movie.setMovie_name(name);
-          movie.setFileType(file.getContentType());
+//          movie.setMovie_photo(file.getBytes());
+//          String name=file.getOriginalFilename();
+//          movie.setMovie_name(name);
+//          movie.setFileType(file.getContentType());
           movie.setCategory(cat);
           Movie savedMovie=movieRepo.save(movie) ;
 
 
-          MovieDtoResponse savedMovieDto= modelMapper.map(savedMovie,MovieDtoResponse.class);
+          MovieDto savedMovieDto= modelMapper.map(savedMovie,MovieDto.class);
 
           savedMovieDto.setCategoryDto(categoryDto);
           return savedMovieDto;
